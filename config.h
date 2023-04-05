@@ -20,7 +20,9 @@ static const char *downvol[]   = { "/home/shine/.scripts/dwm/set_volume.sh", "do
 static const char *mutevol[] = { "/home/shine/.scripts/dwm/set_volume.sh","mute",  NULL };
 
 /* screenshot */
-static const char *screenshot[] = {"scrot", "/home/shine/pictures/screenshots/%Y-%m-%d-%T-screenshot.jpg", NULL};
+static const char *screenshot[] = {"gscreenshot","-f", "/home/shine/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png", "-s", NULL};
+
+// static const char *screenshot[] = {"scrot", "/home/shine/pictures/screenshots/%Y-%m-%d-%T-screenshot.jpg", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
@@ -28,7 +30,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:semibold:size=22" };
-static const char dmenufont[]       = "monospace:size=16";
+static const char dmenufont[]       = "monospace:semibold:size=22";
 
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -37,7 +39,7 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 /* gruvbox colors */
 static const char col_red[]			= "#9D0006";
-static const char col_green[]		= "#79740E";
+static const char col_green[]		= "#B8BB26";
 static const char col_grayg[]		= "#1D2021"; 
 static const char col_orange[] 		= "#D65D0E";
 static const char col_purple[] 		= "#8F3F71";
@@ -48,7 +50,7 @@ static const char col_aqua[]		= "#8EC07C";
 static const char *colors[][3]      = {
 	/*               fg         	bg         	  border    */  
 	[SchemeNorm] = { col_grayg,  col_purple,     col_grayg },
-	[SchemeSel]  = { col_orange, col_aqua,       col_yellow },
+	[SchemeSel]  = { col_orange, col_green,       col_yellow },
 };
 
 /* tagging */
@@ -96,13 +98,13 @@ static const char *dmenucmd[] = { "dmenu_run",
 								  "-fn", 
 								  dmenufont,
 								  "-nb", 
-								  col_gray1,
+								  col_grayg,
 								  "-nf",
-								  col_gray3,
+								  col_purple,
 								  "-sb",
-								  col_cyan,
+								  col_green,
 								  "-sf",
-								  col_gray4,
+								  col_orange,
 								  NULL };
 
 static const char *termcmd[]  = { "/usr/bin/terminator", NULL };
@@ -110,8 +112,9 @@ static const char *termcmd[]  = { "/usr/bin/terminator", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,					        XK_Print,  spawn,   	   {.v = screenshot } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,           		    XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -119,9 +122,9 @@ static const Key keys[] = {
 	//{ MODKEY,                       XK_d,      spawn,          {.v = resizedowncmd } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,			            XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -143,13 +146,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	/*For brightness gui*/
 	{ 0,					 XF86XK_MonBrightnessUp,   spawn,   {.v = upbrightness} },
 	{ 0,					 XF86XK_MonBrightnessDown, spawn,   {.v = downbrightness} },
 	{ 0,                     XF86XK_AudioLowerVolume,  spawn,   {.v = downvol } },
  	{ 0,                     XF86XK_AudioMute, 		   spawn,   {.v = mutevol } },
  	{ 0,                     XF86XK_AudioRaiseVolume,  spawn,   {.v = upvol   } },
-	{0,						 XK_Print,				   spawn,   {.v = screenshot } },
 };
 
 /* button definitions */
