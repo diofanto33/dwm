@@ -38,20 +38,20 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 /* gruvbox colors */
-static const char col_red[]			= "#9D0006";
-static const char col_green[]		= "#B8BB26";
-static const char col_grayg[]		= "#1D2021"; 
-static const char col_orange[] 		= "#D65D0E";
-static const char col_purple[] 		= "#8F3F71";
-static const char col_yellow[]		= "#B57614";
-static const char col_blueg[]		= "#076678";
-static const char col_aqua[]		= "#8EC07C";
+static const char col_red[]	    = "#9D0006";
+static const char col_green[]	    = "#B8BB26";
+static const char col_grayg[]	    = "#1D2021"; 
+static const char col_orange[] 	    = "#D65D0E";
+static const char col_purple[] 	    = "#8F3F71";
+static const char col_yellow[]	    = "#B57614";
+static const char col_blueg[]	    = "#076678";
+static const char col_aqua[]	    = "#8EC07C";
 
 static const char *colors[][3]      = {
-	/*               fg         	bg         	  border    */  
-	[SchemeNorm] = { col_grayg,  col_purple,     col_grayg },
-	[SchemeSel]  = { col_orange, col_green,       col_yellow },
-};
+			/*               fg         	bg         	  border    */ 
+		[SchemeNorm] = { col_grayg,  col_purple,     col_grayg },
+		[SchemeSel]  = { col_orange, col_green,       col_yellow },
+		};
 
 /* tagging */
 static const char *tags[] = {"", "","","󰮯", "󰍳", "", "󱍢", "", "" };
@@ -93,38 +93,37 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run",
-								  "-m", 
-								  dmenumon,
-								  "-fn", 
-								  dmenufont,
-								  "-nb", 
-								  col_grayg,
-								  "-nf",
-								  col_purple,
-								  "-sb",
-								  col_green,
-								  "-sf",
-								  col_orange,
-								  NULL };
+				  "-m", 
+				  dmenumon,
+				  "-fn", 
+				  dmenufont,
+				  "-nb", 
+				  col_grayg,
+				  "-nf",
+				  col_purple,
+				  "-sb",
+				  col_green,
+				  "-sf",
+				  col_orange,
+				  NULL };
 
 static const char *termcmd[]  = { "/usr/bin/terminator", NULL };
 
-
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,					        XK_Print,  spawn,   	   {.v = screenshot } },
+	{ 0,			        XK_Print,  spawn,   	   {.v = screenshot } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,           		    XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,           	        XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	//{ MODKEY,                       XK_i,      spawn,          {.v = resizeupcmd } },
-	//{ MODKEY,                       XK_d,      spawn,          {.v = resizedowncmd } },
+      //{ MODKEY,                       XK_i,      spawn,          {.v = resizeupcmd } },
+      //{ MODKEY,                       XK_d,      spawn,          {.v = resizedowncmd } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,			            XK_q,      killclient,     {0} },
+	{ MODKEY,			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -146,11 +145,11 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0,					 XF86XK_MonBrightnessUp,   spawn,   {.v = upbrightness} },
-	{ 0,					 XF86XK_MonBrightnessDown, spawn,   {.v = downbrightness} },
-	{ 0,                     XF86XK_AudioLowerVolume,  spawn,   {.v = downvol } },
- 	{ 0,                     XF86XK_AudioMute, 		   spawn,   {.v = mutevol } },
- 	{ 0,                     XF86XK_AudioRaiseVolume,  spawn,   {.v = upvol   } },
+	{ 0,			        XF86XK_MonBrightnessUp,   spawn,   {.v = upbrightness} },
+	{ 0,				XF86XK_MonBrightnessDown, spawn,   {.v = downbrightness} },
+	{ 0,                     	XF86XK_AudioLowerVolume,  spawn,   {.v = downvol } },
+ 	{ 0,                     	XF86XK_AudioMute,         spawn,   {.v = mutevol } },
+ 	{ 0,                     	XF86XK_AudioRaiseVolume,  spawn,   {.v = upvol } },
 };
 
 /* button definitions */
@@ -169,4 +168,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
